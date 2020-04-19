@@ -35,22 +35,30 @@ class CuotaAdapter(private var arrayMeme: MutableList<Pago>) :
     }
 
 
-    class ViewHolder(private val view: View) : RecyclerView.ViewHolder(view) ,View.OnClickListener{
+    fun actualizarUI(arrayPago: MutableList<Pago>){
+
+        arrayMeme = arrayPago
+        this.notifyDataSetChanged()
+
+    }
+
+
+    class ViewHolder(private val view: View) : RecyclerView.ViewHolder(view), View.OnClickListener {
         private lateinit var pago: Pago
 
         init {
             view.tviCuotaDetalle.setOnClickListener(this)
         }
 
-        fun binMeme(meme:Pago){
-            this.pago=meme
-            view.tviCuotaDetalle.text=meme.detalle
+        fun binMeme(meme: Pago) {
+            this.pago = meme
+            view.tviCuotaDetalle.text = meme.detalle
             view.iviLogo.setImageDrawable(view.resources.getDrawable(pago.imagen))
 
         }
 
         override fun onClick(v: View?) {
-            Toast.makeText(view.context,"CLik ITEM ${pago.detalle}",Toast.LENGTH_LONG).show()
+            Toast.makeText(view.context, "CLik ITEM ${pago.detalle}", Toast.LENGTH_LONG).show()
         }
 
 
